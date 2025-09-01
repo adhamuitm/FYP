@@ -3,12 +3,12 @@ session_start();
 require_once 'dbconnect.php';
 require_once 'auth_helper.php';
 
-// Set content type
-header('Content-Type: application/json');
+// FIXED: Disable error output to prevent JSON corruption
+error_reporting(0);
+ini_set('display_errors', 0);
 
-// Enable detailed error reporting (remove or disable in production)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Set content type for clean JSON output
+header('Content-Type: application/json; charset=utf-8');
 
 // Authenticate and authorize access
 try {
@@ -375,16 +375,18 @@ try {
 
     $html .= '</div>'; // Close main container
 
-    // Return success response
+    // FIXED: Clean buffer and return success response
+    ob_clean(); // Clear any previous output
     echo json_encode([
         'success' => true,
         'html' => $html,
         'data' => $data
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
     error_log("Error in get_borrow_details.php: " . $e->getMessage());
     http_response_code(500);
+    ob_clean(); // Clear any previous output
     echo json_encode([
         'success' => false,
         'message' => 'An error occurred while retrieving data. Please try again.',
@@ -393,7 +395,7 @@ try {
             'file' => $e->getFile(),
             'line' => $e->getLine()
         ]
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
 }
 
 // Close prepared statement if exists
