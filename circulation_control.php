@@ -298,91 +298,76 @@ $res_stats = $res_stats_result->fetch_assoc();
             width: var(--sidebar-width);
             background: white;
             border-right: 1px solid var(--light-gray);
-            padding: 1.5rem 0;
-            z-index: 40;
             transition: var(--transition);
+            z-index: 40;
             overflow-y: auto;
-            height: calc(100vh - var(--header-height));
         }
 
         .sidebar.collapsed {
             width: var(--sidebar-collapsed-width);
         }
 
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            background: none;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .menu-item.active {
+            background: var(--primary);
+            color: white;
+            border-right: 3px solid var(--primary-dark);
+        }
+
+        .menu-item i {
+            width: 20px;
+            text-align: center;
+        }
+
         .sidebar.collapsed .menu-item span {
             display: none;
         }
 
-        .sidebar.collapsed .menu-item {
-            justify-content: center;
-            padding: 0.85rem;
-        }
-
-        .sidebar.collapsed .menu-item i {
-            margin-right: 0;
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            border-top: 1px solid var(--light-gray);
+            background: var(--light);
+            font-size: 0.75rem;
+            color: var(--medium-gray);
+            text-align: center;
         }
 
         .sidebar.collapsed .sidebar-footer {
             display: none;
         }
 
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            color: var(--secondary);
-            text-decoration: none;
-            transition: var(--transition);
-            border-left: 3px solid transparent;
-            gap: 0.85rem;
-        }
-
-        .menu-item:hover {
-            color: var(--primary);
-            background: rgba(30, 58, 138, 0.05);
-        }
-
-        .menu-item.active {
-            color: var(--primary);
-            border-left-color: var(--primary);
-            font-weight: 500;
-            background: rgba(30, 58, 138, 0.05);
-        }
-
-        .menu-item i {
-            width: 20px;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-
-        .menu-item span {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .sidebar-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--light-gray);
-            margin-top: auto;
-        }
-
-        .sidebar-footer p {
-            font-size: 0.85rem;
-            color: var(--medium-gray);
-            line-height: 1.4;
-        }
-
-        .sidebar-footer p span {
-            color: var(--primary);
-            font-weight: 500;
-        }
-
         /* Main Content */
         .main-content {
             margin-left: var(--sidebar-width);
             margin-top: var(--header-height);
+            padding: 2rem;
             min-height: calc(100vh - var(--header-height));
-            padding: 1.5rem;
             transition: var(--transition);
         }
 
@@ -390,100 +375,118 @@ $res_stats = $res_stats_result->fetch_assoc();
             margin-left: var(--sidebar-collapsed-width);
         }
 
-        /* Page Header */
         .page-header {
+            margin-bottom: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.75rem;
         }
 
         .page-title {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--dark);
+            margin-bottom: 0.5rem;
         }
 
         .welcome-text {
-            font-size: 0.95rem;
-            color: var(--medium-gray);
-            margin-top: 0.25rem;
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            margin-bottom: 2rem;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-bottom: 3px solid var(--primary-dark);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         /* Statistics Cards */
         .stats-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .stats-card {
             background: white;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            overflow: hidden;
-            border: 1px solid var(--light-gray);
-            margin-bottom: 2rem;
-            padding: 1.5rem;
             text-align: center;
-            transition: transform 0.2s ease;
-            position: relative;
+            transition: var(--transition);
         }
 
         .stats-card:hover {
-            transform: translateY(-2px);
             box-shadow: var(--card-shadow-hover);
-        }
-
-        .stats-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: translateY(-2px);
         }
 
         .stats-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary);
             margin-bottom: 0.5rem;
-            line-height: 1;
         }
 
         .stats-label {
-            color: var(--medium-gray);
-            font-size: 0.875rem;
+            color: var(--secondary);
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
-        /* Content Cards */
-        .content-card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-            border: 1px solid var(--light-gray);
-            margin-bottom: 2rem;
-        }
-
+        /* Filter Section */
         .filter-section {
             background: white;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 1.5rem;
             margin-bottom: 2rem;
-            border: 1px solid var(--light-gray);
         }
 
         .filter-row {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
             align-items: end;
+            flex-wrap: wrap;
         }
 
         .filter-group {
@@ -495,37 +498,38 @@ $res_stats = $res_stats_result->fetch_assoc();
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: var(--secondary);
+            color: var(--dark);
         }
 
         .filter-group input,
         .filter-group select {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.75rem;
             border: 1px solid var(--light-gray);
-            border-radius: var(--border-radius);
-            font-size: 0.95rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
             transition: var(--transition);
         }
 
         .filter-group input:focus,
         .filter-group select:focus {
             outline: none;
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         /* Buttons */
         .btn {
-            padding: 0.75rem 1.25rem;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 6px;
             font-weight: 500;
             cursor: pointer;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: var(--transition);
+            text-decoration: none;
         }
 
         .btn-primary {
@@ -535,7 +539,6 @@ $res_stats = $res_stats_result->fetch_assoc();
 
         .btn-primary:hover {
             background: var(--primary-dark);
-            color: white;
         }
 
         .btn-secondary {
@@ -544,214 +547,155 @@ $res_stats = $res_stats_result->fetch_assoc();
         }
 
         .btn-secondary:hover {
-            background: #5a6268;
+            background: #475569;
         }
 
-        /* Tabs */
-        .tabs-container {
-            margin-bottom: 2rem;
+        .btn-danger {
+            background: var(--danger);
+            color: white;
         }
 
-        .tabs-nav {
-            display: flex;
-            background: white;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-            border: 1px solid var(--light-gray);
-            border-bottom: none;
+        .btn-danger:hover {
+            background: #dc2626;
         }
 
-        .tab-btn {
-            flex: 1;
-            padding: 1rem;
-            background: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--secondary);
-            transition: var(--transition);
-            border-bottom: 3px solid transparent;
-        }
-
-        .tab-btn:hover {
-            background: var(--light);
-        }
-
-        .tab-btn.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-            background: var(--light);
-        }
-
-        .tab-btn i {
-            margin-right: 0.5rem;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Table */
+        /* Table Styles */
         .table-section {
             background: white;
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            overflow-x: auto;
-            border: 1px solid var(--light-gray);
+            overflow: hidden;
         }
 
         .circulation-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 1200px;
         }
 
-        .circulation-table thead th {
+        .circulation-table th {
             background: var(--light);
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             text-align: left;
-            font-weight: 500;
-            color: var(--secondary);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--light-gray);
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid var(--light-gray);
         }
 
-        .circulation-table tbody td {
-            padding: 1rem 1.5rem;
+        .circulation-table td {
+            padding: 1rem;
             border-bottom: 1px solid var(--light-gray);
-            color: var(--dark);
-            font-size: 0.95rem;
+            vertical-align: middle;
         }
 
         .circulation-table tbody tr:hover {
-            background: rgba(30, 58, 138, 0.025);
+            background: var(--light);
         }
 
-        .circulation-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Status Badges */
+        /* Status badges */
         .status-badge {
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            display: inline-block;
             text-transform: capitalize;
         }
 
         .status-badge.borrowed {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
+            background: #fef3c7;
+            color: #92400e;
         }
 
         .status-badge.returned {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
+            background: #d1fae5;
+            color: #065f46;
         }
 
         .status-badge.overdue {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
+            background: #fee2e2;
+            color: #991b1b;
         }
 
         .status-badge.lost {
-            background: rgba(100, 116, 139, 0.1);
-            color: var(--secondary);
+            background: #f3f4f6;
+            color: #374151;
         }
 
         .status-badge.active {
-            background: rgba(14, 165, 233, 0.1);
-            color: var(--accent);
+            background: #dbeafe;
+            color: #1e40af;
         }
-        
-        .status-badge.fulfilled, .status-badge.ready {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
+
+        .status-badge.fulfilled {
+            background: #d1fae5;
+            color: #065f46;
         }
 
         .status-badge.expired {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
+            background: #fee2e2;
+            color: #991b1b;
         }
 
         .status-badge.cancelled {
-            background: rgba(100, 116, 139, 0.1);
-            color: var(--secondary);
-        }
-        
-        .status-badge.waiting {
-            background-color: rgba(99, 102, 241, 0.1);
-            color: #6366f1;
+            background: #f3f4f6;
+            color: #374151;
         }
 
         .status-badge.available {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-badge.borrowed {
+            background: #fef3c7;
+            color: #92400e;
         }
 
         .status-badge.reserved {
-            background: rgba(14, 165, 233, 0.1);
-            color: var(--accent);
+            background: #dbeafe;
+            color: #1e40af;
         }
 
-        /* Row Highlights */
-        tr.row-overdue {
-            background: rgba(239, 68, 68, 0.025) !important;
-            border-left: 3px solid var(--danger);
+        /* Row colors */
+        .row-overdue {
+            background-color: #fef2f2 !important;
         }
 
-        tr.row-borrowed {
-            background: rgba(245, 158, 11, 0.025) !important;
-            border-left: 3px solid var(--warning);
+        .row-borrowed {
+            background-color: #fffbeb !important;
         }
 
-        tr.row-returned {
-            background: rgba(16, 185, 129, 0.025) !important;
+        .row-returned {
+            background-color: #f0fdf4 !important;
         }
 
-        tr.row-active-reservation {
-            background: rgba(14, 165, 233, 0.025) !important;
-            border-left: 3px solid var(--accent);
+        .row-active-reservation {
+            background-color: #eff6ff !important;
         }
 
-        tr.row-fulfilled {
-            background: rgba(16, 185, 129, 0.025) !important;
+        .row-fulfilled {
+            background-color: #f0fdf4 !important;
         }
 
-        tr.row-expired {
-            background: rgba(245, 158, 11, 0.025) !important;
+        .row-expired {
+            background-color: #fef2f2 !important;
         }
 
-        /* Action Buttons */
+        /* Action buttons */
         .action-buttons {
             display: flex;
-            gap: 0.25rem;
-            flex-wrap: nowrap;
+            gap: 0.5rem;
         }
 
         .btn-action {
-            padding: 0.4rem;
-            font-size: 0.75rem;
-            border-radius: 4px;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-            white-space: nowrap;
             width: 32px;
             height: 32px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
         }
 
         .btn-return {
@@ -760,7 +704,7 @@ $res_stats = $res_stats_result->fetch_assoc();
         }
 
         .btn-return:hover {
-            background: #0d9f6e;
+            background: #059669;
         }
 
         .btn-view {
@@ -774,7 +718,7 @@ $res_stats = $res_stats_result->fetch_assoc();
 
         .btn-fine {
             background: var(--warning);
-            color: var(--dark);
+            color: white;
         }
 
         .btn-fine:hover {
@@ -787,7 +731,7 @@ $res_stats = $res_stats_result->fetch_assoc();
         }
 
         .btn-fulfill:hover {
-            background: #0d9f6e;
+            background: #059669;
         }
 
         .btn-cancel {
@@ -799,56 +743,25 @@ $res_stats = $res_stats_result->fetch_assoc();
             background: #dc2626;
         }
 
-        /* Alert Messages */
-        .alert {
-            padding: 1rem 1.5rem;
-            border-radius: var(--border-radius);
-            margin-bottom: 1.5rem;
-            display: none;
-            align-items: center;
-            gap: 0.75rem;
-            border: 1px solid transparent;
-            position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            min-width: 400px;
-            max-width: 600px;
-            box-shadow: var(--card-shadow-hover);
-        }
-
-        .alert.show {
-            display: flex;
-        }
-
-        .alert-success {
-            background: rgba(16, 185, 129, 0.1);
-            border-color: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-        }
-
-        .alert-danger {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: rgba(239, 68, 68, 0.2);
-            color: var(--danger);
-        }
-
-        .alert i {
-            font-size: 1.25rem;
-        }
+        /* Text colors */
+        .text-success { color: var(--success); }
+        .text-warning { color: var(--warning); }
+        .text-danger { color: var(--danger); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--medium-gray); }
+        .text-info { color: var(--accent); }
 
         /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
-            z-index: 2000;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
         }
 
         .modal.show {
@@ -860,42 +773,107 @@ $res_stats = $res_stats_result->fetch_assoc();
         .modal-content {
             background: white;
             border-radius: var(--border-radius);
-            max-width: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 600px;
             width: 90%;
-            animation: slideIn 0.3s;
-            box-shadow: var(--card-shadow-hover);
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
         }
 
         .modal-header {
             padding: 1.5rem;
             border-bottom: 1px solid var(--light-gray);
-            background: var(--primary);
-            color: white;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
 
         .modal-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
+            margin: 0;
+            color: var(--dark);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            color: white;
-            margin: 0;
+            gap: 0.5rem;
         }
 
         .modal-body {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .modal-footer {
             padding: 1.5rem;
             border-top: 1px solid var(--light-gray);
-            background: var(--light);
             display: flex;
-            gap: 1rem;
             justify-content: flex-end;
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            gap: 1rem;
+        }
+
+        /* Alert Messages */
+        .alert {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            min-width: 300px;
+            max-width: 500px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .alert.show {
+            transform: translateX(0);
+        }
+
+        .alert-success {
+            background: var(--success);
+        }
+
+        .alert-danger {
+            background: var(--danger);
+        }
+
+        .alert-warning {
+            background: var(--warning);
+        }
+
+        .alert-info {
+            background: var(--accent);
+        }
+
+        /* Form elements */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         /* Animations */
@@ -1544,19 +1522,23 @@ $res_stats = $res_stats_result->fetch_assoc();
         let reservationDataTable = null;
         let currentActiveTab = 'borrow'; // Track current active tab
 
-        // Enhanced error handling and debugging
+        // FIXED: Enhanced error handling and debugging with cleaner messages
         function debugLog(message, data = null) {
-            console.log('[Circulation Control Debug]:', message, data);
+            if (data) {
+                console.log(`[Circulation] ${message}:`, data);
+            } else {
+                console.log(`[Circulation] ${message}`);
+            }
         }
 
         function showError(message, error = null) {
-            console.error('[Circulation Control Error]:', message, error);
+            console.error(`[Circulation Error] ${message}`, error);
             showAlert('danger', message);
         }
 
         // Initialize when document is ready
         $(document).ready(function() {
-            debugLog('Document ready - Initializing...');
+            debugLog('System initialized successfully');
             
             // Sidebar toggle functionality
             const sidebarToggle = document.getElementById('sidebarToggle');
@@ -1590,7 +1572,7 @@ $res_stats = $res_stats_result->fetch_assoc();
             // Initialize DataTables with proper error handling
             try {
                 initializeBorrowTable();
-                debugLog('Borrow table initialized successfully');
+                debugLog('Borrow table ready');
             } catch (error) {
                 showError('Failed to initialize borrow table', error);
             }
@@ -1613,7 +1595,7 @@ $res_stats = $res_stats_result->fetch_assoc();
                 const headerCols = table.find('thead th').length;
                 const firstRowCols = table.find('tbody tr:first td').length;
                 
-                debugLog('Table structure check:', {
+                debugLog('Table structure validated', {
                     headerColumns: headerCols,
                     firstRowColumns: firstRowCols,
                     hasData: hasData
@@ -1624,14 +1606,14 @@ $res_stats = $res_stats_result->fetch_assoc();
                     return;
                 }
             } else {
-                debugLog('Borrow table has no data or shows "no records" message - skipping column validation');
+                debugLog('Table has no data rows - proceeding with initialization');
             }
 
             // Destroy existing instance if it exists
             if (borrowDataTable) {
                 borrowDataTable.destroy();
                 borrowDataTable = null;
-                debugLog('Previous borrow table instance destroyed');
+                debugLog('Previous table instance destroyed');
             }
 
             borrowDataTable = table.DataTable({
@@ -1662,6 +1644,7 @@ $res_stats = $res_stats_result->fetch_assoc();
             });
         }
 
+        // FIXED: Reservation table initialization with proper column handling
         function initializeReservationTable() {
             const table = $('#reservationTable');
             
@@ -1677,7 +1660,7 @@ $res_stats = $res_stats_result->fetch_assoc();
                 const headerCols = table.find('thead th').length;
                 const firstRowCols = table.find('tbody tr:first td').length;
                 
-                debugLog('Reservation table structure check:', {
+                debugLog('Reservation table structure validated', {
                     headerColumns: headerCols,
                     firstRowColumns: firstRowCols,
                     hasData: hasData
@@ -1688,7 +1671,7 @@ $res_stats = $res_stats_result->fetch_assoc();
                     return;
                 }
             } else {
-                debugLog('Reservation table has no data or shows "no records" message - skipping column validation');
+                debugLog('Reservation table has no data rows - proceeding with initialization');
             }
 
             // Destroy existing instance if it exists
@@ -1729,7 +1712,7 @@ $res_stats = $res_stats_result->fetch_assoc();
         // FIXED: Complete switchTab function implementation
         function switchTab(tabName) {
             try {
-                debugLog('Switching to tab:', tabName);
+                debugLog('Switching to tab: ' + tabName);
                 
                 // Update active states for tabs
                 $('.tab-content').removeClass('active');
@@ -1780,7 +1763,7 @@ $res_stats = $res_stats_result->fetch_assoc();
                     }
                 }
                 
-                debugLog('Tab switch completed successfully');
+                debugLog('Tab switch completed');
                 
             } catch (error) {
                 showError('Error during tab switch', error);
@@ -1794,7 +1777,7 @@ $res_stats = $res_stats_result->fetch_assoc();
             alertDiv.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
             alertDiv.classList.add('show');
             
-            debugLog('Alert shown:', { type, message });
+            debugLog('Alert shown', { type, message });
             
             setTimeout(() => {
                 alertDiv.classList.remove('show');
@@ -1876,9 +1859,9 @@ $res_stats = $res_stats_result->fetch_assoc();
             }
         });
 
-        // FIXED: Complete viewDetails function implementation with correct filename
+        // FIXED: Complete viewDetails function implementation with proper JSON handling
         function viewDetails(borrowId) {
-            debugLog('Viewing details for borrowID:', borrowId);
+            debugLog('Viewing details for borrowID: ' + borrowId);
             
             const detailsContent = document.getElementById('detailsContent');
             detailsContent.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i><p>Loading details...</p></div>';
@@ -1886,7 +1869,7 @@ $res_stats = $res_stats_result->fetch_assoc();
 
             // FIXED: Correct filename - using get_borrow_details.php (matching your provided file)
             const url = `get_borrow_details.php?borrowID=${encodeURIComponent(borrowId)}`;
-            debugLog('Fetching from URL:', url);
+            debugLog('Fetching from URL: ' + url);
 
             fetch(url, {
                 method: 'GET',
@@ -1896,66 +1879,66 @@ $res_stats = $res_stats_result->fetch_assoc();
                 }
             })
             .then(response => {
-                debugLog('Response status:', response.status);
+                debugLog('Response status: ' + response.status);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
+                // FIXED: Better content-type checking
                 const contentType = response.headers.get('content-type');
                 if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Response is not JSON');
+                    throw new Error('Response is not JSON. Content-Type: ' + contentType);
                 }
                 
-                return response.json();
+                return response.text().then(text => {
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        debugLog('Raw response text:', text);
+                        throw new Error('Invalid JSON response: ' + e.message);
+                    }
+                });
             })
             .then(data => {
-                debugLog('Received data:', data);
-                
+                debugLog('Response data received', data);
                 if (data.success) {
                     detailsContent.innerHTML = data.html;
                 } else {
                     detailsContent.innerHTML = `
                         <div class="alert alert-danger">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <strong>Error:</strong> ${data.message || 'Failed to load details'}
+                            <strong>Error:</strong> ${data.message || 'Failed to load borrowing details'}
                         </div>
                     `;
                 }
             })
             .catch(error => {
-                showError('Failed to load borrow details', error);
+                showError('Failed to load borrowing details', error);
                 detailsContent.innerHTML = `
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <strong>Network Error:</strong> Unable to fetch details.<br>
-                        <small>Please check:</small><br>
-                        <small>1. File 'get_borrow_details.php' exists</small><br>
-                        <small>2. Server is accessible</small><br>
-                        <small>3. Database connection is working</small><br>
+                        <strong>Network Error:</strong> Unable to fetch borrowing details.<br>
+                        <small>Please ensure 'get_borrow_details.php' exists and is accessible</small><br>
                         <small class="text-muted">Error: ${error.message}</small>
                     </div>
                 `;
             });
         }
 
-        // Manage Fine button redirects correctly
         function manageFine(loginId) {
-            debugLog('Managing fine for user:', loginId);
-            
-            if (loginId) {
-                window.location.href = `fine_management.php?view=search&login_id=${encodeURIComponent(loginId)}`;
-            } else {
-                showError('User login ID not found for fine management');
-            }
+            window.open(`fine_management.php?user=${encodeURIComponent(loginId)}`, '_blank');
         }
 
         let currentReservationId = null;
         let currentReservationBookId = null;
+        let currentReservationUserId = null;
 
         function fulfillReservation(reservationId, bookId, userId) {
             currentReservationId = reservationId;
             currentReservationBookId = bookId;
+            currentReservationUserId = userId;
+            
             const row = document.getElementById('res-row-' + reservationId);
             if (row) {
                 const bookTitle = row.cells[3].querySelector('strong').textContent;
@@ -1967,7 +1950,13 @@ $res_stats = $res_stats_result->fetch_assoc();
         }
 
         document.getElementById('confirmFulfillBtn').addEventListener('click', function() {
-            if (currentReservationId && currentReservationBookId) {
+            if (currentReservationId && currentReservationBookId && currentReservationUserId) {
+                const borrowPeriod = document.getElementById('borrowPeriod').value;
+                if (!borrowPeriod || borrowPeriod < 1) {
+                    showAlert('danger', 'Please enter a valid borrow period.');
+                    return;
+                }
+
                 this.disabled = true;
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
                 
@@ -1978,7 +1967,8 @@ $res_stats = $res_stats_result->fetch_assoc();
                         action: 'fulfill',
                         reservationID: currentReservationId,
                         bookID: currentReservationBookId,
-                        borrowPeriod: document.getElementById('borrowPeriod').value
+                        userID: currentReservationUserId,
+                        borrowPeriod: parseInt(borrowPeriod)
                     })
                 })
                 .then(response => response.json())
@@ -2054,14 +2044,14 @@ $res_stats = $res_stats_result->fetch_assoc();
         });
 
         function viewReservationDetails(reservationId) {
-            debugLog('Viewing reservation details for ID:', reservationId);
+            debugLog('Viewing reservation details for ID: ' + reservationId);
             
             const detailsContent = document.getElementById('reservationDetailsContent');
             detailsContent.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i><p>Loading details...</p></div>';
             document.getElementById('reservationDetailsModal').classList.add('show');
 
             const url = `get_reservation_details.php?reservationID=${encodeURIComponent(reservationId)}`;
-            debugLog('Fetching from URL:', url);
+            debugLog('Fetching from URL: ' + url);
 
             fetch(url, {
                 method: 'GET',
@@ -2134,7 +2124,7 @@ $res_stats = $res_stats_result->fetch_assoc();
 
         // Enhanced error handling for global errors
         window.addEventListener('error', function(e) {
-            debugLog('Global error caught:', {
+            debugLog('Global error caught', {
                 message: e.message,
                 filename: e.filename,
                 lineno: e.lineno,
@@ -2143,10 +2133,10 @@ $res_stats = $res_stats_result->fetch_assoc();
             });
         });
 
-        // DataTables global error handling
+        // FIXED: DataTables global error handling with cleaner messages
         $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
             showError('DataTables Error: ' + message);
-            debugLog('DataTables error details:', {
+            debugLog('DataTables error details', {
                 settings: settings,
                 helpPage: helpPage,
                 message: message
